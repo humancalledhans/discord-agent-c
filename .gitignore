@@ -50,3 +50,5 @@ coverage/
 # If you're using TypeScript
 *.js.map
 *.d.ts
+
+.env
