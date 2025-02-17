@@ -1,1 +1,52 @@
-.env
+# Node.js specific
+node_modules/
+npm-debug.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE and text editor files
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Credentials and sensitive data
+config.json
+secrets.json
+
+# Build artifacts
+dist/
+build/
+
+# Dependency directories
+coverage/
+
+# API keys or tokens (if not in .env)
+keys.json
+
+# lock files
+package-lock.json
+yarn.lock
+
+# Local settings
+local.json
+
+# Test coverage reports
+coverage/
+
+# Specific to your project (if applicable)
+# If you have custom files or directories that shouldn't be tracked:
+# my-custom-config-file.json
+# temp/
+
+# If you're using TypeScript
+*.js.map
+*.d.ts
