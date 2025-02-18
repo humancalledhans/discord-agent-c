@@ -42,8 +42,8 @@ client.on('messageCreate', async message => {
     try {
         console.log('Attempting to fetch from API');
         const response = await axios.post(API_ENDPOINT, { user_input: message.content });
-        console.log('API response data:', response.data);
-        message.reply(response.data);
+        console.log('API response data:', response.data.data);
+        message.reply(response.data.data);
     } catch (error) {
         console.error('Error:', error);
         message.reply('Sorry, there was an error processing your request.');
