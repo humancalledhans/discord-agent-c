@@ -19,6 +19,7 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async message => {
+    console.log("message received: ", message.content);
     if (message.author.bot) return;
 
     try {
