@@ -41,7 +41,7 @@ client.on('messageCreate', async message => {
 
     try {
         console.log('Attempting to fetch from API');
-        const response = await axios.post(API_ENDPOINT, { query: message.content });
+        const response = await axios.post(API_ENDPOINT, { user_input: message.content });
         console.log('API response data:', response.data);
         message.reply(response.data.answer);
     } catch (error) {
