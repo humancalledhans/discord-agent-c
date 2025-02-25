@@ -28,7 +28,6 @@ client.on('messageCreate', async message => {
     console.log("messageCreate event triggered");
     console.log("message received: ", message.content);
 
-    // Check if the message is in an allowed channel
     if (!allowedChannels.includes(message.channel.id)) {
         console.log("Ignoring message from channel:", message.channel.id);
         return;
@@ -43,7 +42,8 @@ client.on('messageCreate', async message => {
         // Fetch the last 100 messages from the channel
         const messages = await message.channel.messages.fetch({ limit: 100 });
 
-        // Find the bot's most recent reply to this user
+        // Find the latest user message + bot reply pair
+        let previousUserMessage = null;
         let previousBotReply = null;
         for (const msg of messages.values()) {
             if (
@@ -57,16 +57,22 @@ client.on('messageCreate', async message => {
                     content: msg.content,
                     timestamp: msg.createdTimestamp,
                 };
-                break;  // Take the most recent reply
+                previousUserMessage = {
+                    content: messages.get(msg.reference.messageId).content,
+                    timestamp: messages.get(msg.reference.messageId).createdTimestamp,
+                };
+                break;  // Take the most recent pair
             }
         }
 
         console.log("User's current message:", message.content);
+        console.log("Previous user message:", previousUserMessage);
         console.log("Previous bot reply:", previousBotReply);
 
         // Prepare context for the API
         const context = {
             user_input: message.content,
+            previous_user_message: previousUserMessage ? previousUserMessage.content : null,
             previous_bot_reply: previousBotReply ? previousBotReply.content : null,
         };
 
@@ -74,7 +80,6 @@ client.on('messageCreate', async message => {
         const response = await axios.post(API_ENDPOINT, context);
         console.log('API response data:', response.data.data);
 
-        // Reply with the response, truncated to Discord's 2000-character limit
         message.reply(response.data.data.slice(0, 1999));
     } catch (error) {
         console.error('Error:', error);
