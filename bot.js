@@ -94,6 +94,7 @@ client.on('messageCreate', async message => {
         if (thinkingMessage) {
             await thinkingMessage.delete().catch(err => console.log('Failed to delete thinking message:', err));
         }
+
     }
 });
 
