@@ -40,6 +40,9 @@ client.on('messageCreate', async message => {
     }
 
     try {
+
+        const thinkingMessage = await message.channel.send('Thinking... 🤔');
+
         // Fetch the last 100 messages from the channel
         const messages = await message.channel.messages.fetch({ limit: 100 });
 
@@ -81,10 +84,16 @@ client.on('messageCreate', async message => {
         const response = await axios.post(API_ENDPOINT, context);
         console.log('API response data:', response.data.data);
 
+        // Delete the thinking message
+        await thinkingMessage.delete();
+
         message.reply(response.data.data.slice(0, 1999));
     } catch (error) {
         console.error('Error:', error);
         // message.reply('Sorry, there was an error processing your request.');
+        if (thinkingMessage) {
+            await thinkingMessage.delete().catch(err => console.log('Failed to delete thinking message:', err));
+        }
     }
 });
 
