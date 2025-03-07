@@ -15,7 +15,7 @@ const API_ENDPOINT = BASE_URL + "/fetch_agent_output";
 
 const allowedChannels = [
     '1341191250266554500',
-    '1343692906656956496',
+    '1280172745618882651',
 ];
 
 
