@@ -34,6 +34,11 @@ client.on('messageCreate', async message => {
         return;
     }
 
+    if (message.content.includes('@everyone')) {
+        console.log("Ignoring message with @everyone");
+        return;
+    }
+
     if (message.author.bot) {
         console.log("Message from bot, ignoring.");
         return;
