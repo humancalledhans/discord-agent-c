@@ -19,8 +19,6 @@ const allowedChannels = [
 ];
 
 
-
-
 client.once('ready', () => {
     console.log('Bot is ready!');
 });
@@ -34,7 +32,7 @@ client.on('messageCreate', async message => {
         return;
     }
 
-    if (message.content.includes('@everyone')) {
+    if (message.content.includes('@everyone') || message.content.includes('@dionpouncil') || message.content.includes("@Admin - Athena") ) {
         console.log("Ignoring message with @everyone");
         return;
     }
