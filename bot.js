@@ -33,6 +33,9 @@ client.on('messageCreate', async message => {
 
 
     // Ignore messages from specific users
+
+    console.log("verify authot", message.author)
+    console.log("verify authot if", message.author.id)
     if (ignoredUsers.includes(message.author.id)) {
         console.log(`Ignoring message from ${message.author.tag} (ID: ${message.author.id})`);
         return;
