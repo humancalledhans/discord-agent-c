@@ -31,7 +31,8 @@ client.on('messageCreate', async message => {
         console.log("Ignoring message from channel:", message.channel.id);
         return;
     }
-
+    
+    console.log("check message.contnet", message.content)
     if (message.content.includes('@everyone') || message.content.includes('@dionpouncil') || message.content.includes("@Admin - Athena") ) {
         console.log("Ignoring message with @everyone");
         return;
